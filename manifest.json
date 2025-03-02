@@ -4,8 +4,9 @@
     "version": "1.0.0",
     "action": { "default_popup": "index.html" },
     "permissions": ["storage", "tabs", "activeTab", "scripting"],
+    "host_permissions": ["<all_urls>"],
     "background": {
-        "service_worker": "src/scripts/background.ts",
-        "matches": ["<all_urls>"]
+        "service_worker": "src/scripts/background.ts"
+        
     }
   }

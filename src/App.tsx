@@ -7,9 +7,14 @@ import { v4 as uuid } from "uuid"
 
 // Your web app's Firebase configuration
 
-const firebaseConfig ={
-
-}
+const firebaseConfig = {
+    apiKey: "AIzaSyCFdZrf1pzCV2H8OxG-bCKDhmQTc5PEEqU",
+    authDomain: "gdsc-f2c78.firebaseapp.com",
+    projectId: "gdsc-f2c78",
+    storageBucket: "gdsc-f2c78.firebasestorage.app",
+    messagingSenderId: "914075252164",
+    appId: "1:914075252164:web:a982894f926ebe756da091"
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -35,14 +40,14 @@ function App() {
                       "user_id": process.env.user_id,
                       "saved_item_id": process.env.saved_item_id,
                       "pipeline_inputs": [
-                        {"input_name": "image_link", "value": `${downloadURL}`},
+                        {"input_name": "input", "value": `${downloadURL}`},
                         {"input_name": "email", "value": `${email}`}
                       ]
                     })
                   };
                   
                   const req = await fetch('https://api.gumloop.com/api/v1/start_pipeline', options)
-                //   const res = await req.json()
+                  await req.json()
                   if (req.ok) {
                     setSent(true)
                   } else {
@@ -51,7 +56,7 @@ function App() {
             }
         }
         upload()
-    }, [screenshot])
+    }, [screenshot, email])
 
     function isValidEmail(email: string) {
         if (email === undefined) return false;

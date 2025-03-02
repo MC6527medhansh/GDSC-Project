@@ -8,13 +8,8 @@ import { v4 as uuid } from "uuid"
 // Your web app's Firebase configuration
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCFdZrf1pzCV2H8OxG-bCKDhmQTc5PEEqU",
-    authDomain: "gdsc-f2c78.firebaseapp.com",
-    projectId: "gdsc-f2c78",
-    storageBucket: "gdsc-f2c78.firebasestorage.app",
-    messagingSenderId: "914075252164",
-    appId: "1:914075252164:web:a982894f926ebe756da091"
-};
+
+}
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

@@ -1,50 +1,55 @@
-# React + TypeScript + Vite
+# ezCal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ezCal is a Chrome extension designed to help students easily capture event details (such as assignment deadlines and TA office hours) from screenshots and sync them with their calendars. By leveraging AI-driven workflows, ezCal extracts event information from images, converts it into a downloadable .ics calendar file, and sends you an email with a download link for manual calendar integration.
 
-Currently, two official plugins are available:
+## What It Does
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Capture Events:**  
+  Capture screenshots directly from your browser using the extension.
 
-## Expanding the ESLint configuration
+- **AI-Driven Processing:**  
+  The captured image is sent to a Gumloop workflow where AI (via Gemini) performs OCR to extract event details and outputs structured JSON data.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Calendar Integration:**  
+  The extracted JSON is converted into an .ics file. An email with a download link for the .ics file is sent to you, enabling you to import events into your Google Calendar.
 
-- Configure the top-level `parserOptions` property like this:
+## How to Use
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. **Install the Extension:**  
+   - Load the unpacked extension into Chrome through the `chrome://extensions/` page.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. **Capture a Screenshot:**  
+   - Click the "Capture" button in the extension popup.
+   - Enter your email address when prompted.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+3. **Process and Sync:**  
+   - The extension uploads the screenshot to Firebase.
+   - It triggers the Gumloop workflow to process the image.
+   - Once processing is complete, you'll receive an email with a link to download the generated .ics file.
+   - Import the .ics file into your Google Calendar to add the events.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Technical Overview
+
+- **Chrome Extension:**  
+  Built with React, TypeScript, and Vite using Manifest V3. The extension captures screenshots and collects your email for processing.
+
+- **Gumloop AI Workflow:**  
+  The screenshot is analyzed using Gemini for OCR and event extraction, which outputs structured JSON data.
+
+- **Calendar & Email Integration:**  
+  A Python backend converts the JSON data into an .ics file and sends an email with a download link so you can import the events into your calendar.
+
+## Impact & Future Plans
+
+- **Automation:**  
+  Automates the tedious process of manually entering event data from various platforms, reducing errors and saving time.
+
+- **Enhanced Productivity:**  
+  Centralizes important academic deadlines and office hours, making it easier to manage your schedule.
+
+- **What's Next:**  
+  Future improvements include exploring alternative integrations to support recurring events, enhance processing speed, and resolve current deployment challenges with Gumloop.
+
+---
+
+For additional details and updates, please refer to the project documentation or contact the development team.
